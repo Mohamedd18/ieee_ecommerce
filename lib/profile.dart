@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieee_ecommerce/login.dart';
-import 'package:ieee_ecommerce/search.dart';
-
-import 'home.dart';
+import 'package:ieee_ecommerce/register.dart';
 
 class profile extends StatelessWidget {
   const profile({super.key});
@@ -13,132 +10,86 @@ class profile extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          appBar: AppBar(),
-          body: Center(
-            child: Column(
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/mm.jpg'),
-                  radius: 70,
+        appBar: AppBar(),
+        body: Center(
+          child: Column(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage('assets/mm.jpg'),
+                radius: 70,
+              ),
+              Text(
+                'Mohamed waleed',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'elmhalawy858@gmail.com',
+                style: TextStyle(fontSize: 15, color: Colors.grey),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: profile2(
+                  x: 350,
+                  text: 'My Orders',
+                  icon: Icons.shopping_bag,
                 ),
-                Text(
-                  'Mohamed waleed',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: profile2(
+                  x: 326,
+                  text: 'Help&Support',
+                  icon: Icons.question_mark_rounded,
                 ),
-                Text(
-                  'elmhalawy858@gmail.com',
-                  style: TextStyle(fontSize: 15, color: Colors.grey),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: profile2(
+                  x: 355,
+                  text: 'About Us',
+                  icon: Icons.error,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  onTap: () {},
                   child: profile2(
-                    x: 350,
-                    text: 'My Orders',
-                    icon: Icons.shopping_bag,
+                    x: 320,
+                    text: 'Change Theme',
+                    icon: Icons.sunny,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: profile2(
-                    x: 326,
-                    text: 'Help&Support',
-                    icon: Icons.question_mark_rounded,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: profile2(
-                    x: 355,
-                    text: 'About Us',
-                    icon: Icons.error,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {},
-                    child: profile2(
-                      x: 320,
-                      text: 'Change Theme',
-                      icon: Icons.sunny,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: InkWell(
+                  onTap: () {
+                    Get.to(() => Register());
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.exit_to_app),
+                        Text(
+                          'Logout',
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        )
+                      ],
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: InkWell(
-                    onTap: () {
-                      Get.to(() => Login());
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.exit_to_app),
-                          Text(
-                            'Logout',
-                            style: TextStyle(fontSize: 15, color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          bottomNavigationBar: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 61,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Get.to(() => home());
-                          },
-                          icon: Icon(Icons.home),
-                        ),
-                        Text('Home')
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Search(),
-                                ));
-                          },
-                          icon: Icon(Icons.search),
-                        ),
-                        Text('Search')
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Get.to(() => profile());
-                          },
-                          icon: Icon(Icons.person),
-                        ),
-                        Text('Profile')
-                      ],
-                    )
-                  ]),
-            ),
-          )),
+        ),
+      ),
     );
   }
 }

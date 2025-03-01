@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:ieee_ecommerce/register.dart';
+import 'package:get/get.dart';
+
+import 'layout.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(
+    home: Layout(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required Layout home});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -15,8 +19,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Register(),
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Layout(),
     );
   }
 }

@@ -1,39 +1,61 @@
 import 'package:flutter/material.dart';
 
-class Search extends StatelessWidget {
-  const Search({super.key});
+import 'api/Product.dart';
+import 'apiManager/apiSearch.dart';
+
+class SearchScreen extends StatefulWidget {
+  @override
+  _SearchScreenState createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  TextEditingController searchController = TextEditingController();
+  List<Product> searchResults = [];
+
+  void searchProducts(String query) async {
+    if (query.isNotEmpty) {
+      ApiSearch apiSearch = ApiSearch(productName: query);
+      List<Product> products = await apiSearch.getProducts();
+
+      setState(() {
+        searchResults = products;
+      });
+    } else {
+      setState(() {
+        searchResults = [];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: double.infinity,
-            height: 45,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.grey)),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.search,
-                    color: Colors.grey,
-                  ),
-                  Text(
-                    'search product...',
-                    style: TextStyle(color: Colors.grey, fontSize: 17),
-                  )
-                ],
+    return Scaffold(
+      appBar: AppBar(title: Text("Product Search")),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: searchController,
+              decoration: InputDecoration(
+                labelText: "Search",
+                border: OutlineInputBorder(),
               ),
+              onChanged: searchProducts,
             ),
           ),
-        ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: searchResults.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(searchResults[index].title ?? ''),
+                  subtitle: Text("\$${searchResults[index].price}"),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

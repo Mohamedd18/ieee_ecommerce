@@ -11,7 +11,7 @@ class Layout extends StatefulWidget {
 }
 
 class _LayoutState extends State<Layout> {
-  List<Widget> screen = [home(), Search(), profile()];
+  List<Widget> screen = [home(), SearchScreen(), profile()];
   int currentIndex = 0;
 
   @override

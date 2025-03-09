@@ -2,12 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ieee_ecommerce/register.dart';
 
-class profile extends StatelessWidget {
+class profile extends StatefulWidget {
   const profile({super.key});
 
   @override
+  State<profile> createState() => _profileState();
+}
+
+class _profileState extends State<profile> {
+  bool isDark = false;
+
+  @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = ThemeData(
+      useMaterial3: true,
+      brightness: isDark ? Brightness.dark : Brightness.light,
+    );
     return MaterialApp(
+      theme: themeData,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(),
@@ -53,7 +65,11 @@ class profile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {
+                      isDark = !isDark;
+                    });
+                  },
                   child: profile2(
                     x: 320,
                     text: 'Change Theme',
